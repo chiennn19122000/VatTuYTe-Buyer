@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/text"
+                android:text="Thông tin sản phẩm"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentTop="true"
+                android:textColor="#4CAF50"
+                android:textSize="30sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:id="@+id/show_product"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/text"
+                android:src="@drawable/home"
+                android:layout_marginTop="20dp"
+                android:layout_width="70pt"
+                android:layout_height="70pt"/>
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_below="@id/show_product"
+                android:textSize="20sp"
+                android:textColor="#000"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="17dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_below="@id/name"
+                android:layout_centerHorizontal="true"
+                android:textSize="20sp"
+                android:textColor="#000"
+                android:layout_marginTop="17dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/info"
+                android:layout_below="@id/price"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="17dp"
+                android:textSize="20sp"
+                android:textColor="#000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/amount"
+                android:textSize="20sp"
+                android:textColor="#000"
+                android:text="1"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/info"
+                android:layout_marginTop="25dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/minus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/info"
+                android:text="-"
+                android:background="#FFFFFF"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="30dp"
+                android:layout_toStartOf="@+id/amount"
+                android:textColor="#000"
+                android:textSize="20sp" />
+            <Button
+                android:id="@+id/plus"
+                android:textSize="20sp"
+                android:text="+"
+                android:textColor="#000"
+                android:layout_below="@id/info"
+                android:background="#FFFFFF"
+                android:layout_toEndOf="@id/amount"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/money"
+                android:text="Thành tiền :"
+                android:textSize="20sp"
+                android:textColor="#FF5722"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/amount"
+                android:layout_marginTop="17dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/ts1"
+                android:text="chọn vị trí mua hàng: "
+                android:textColor="#000"
+                android:layout_below="@id/money"
+                android:layout_marginTop="17dp"
+                android:layout_centerHorizontal="true"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <Spinner
+                android:id="@+id/spinner_place_seller"
+                android:layout_below="@id/ts1"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/save_order"
+                android:text="Đặt hàng"
+                android:layout_below="@id/spinner_place_seller"
+                android:textColor="#4CAF50"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>
