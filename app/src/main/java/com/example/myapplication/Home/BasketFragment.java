@@ -1,11 +1,13 @@
 package com.example.myapplication.Home;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +16,11 @@ import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.Basket.Basket;
 import com.example.myapplication.Basket.BasketAdapter;
+import com.example.myapplication.Basket.OrderAdapter;
+import com.example.myapplication.Detail.DetailBasket;
+import com.example.myapplication.Detail.DetailOrder;
+import com.example.myapplication.Detail.DetailProduct;
+import com.example.myapplication.Product.Product;
 import com.example.myapplication.R;
 import com.example.myapplication.SendDataToServer.ApiClient;
 import com.example.myapplication.SendDataToServer.ApiInterface;
@@ -28,37 +35,37 @@ import retrofit2.Response;
 import static android.content.ContentValues.TAG;
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.myapplication.Constants.BaseUrlBuyer;
-
+import static com.example.myapplication.Constants.SEND_DATA;
 
 public class BasketFragment extends Fragment {
 
-    ListView lvBasket;
-    ArrayList<Basket> basketArrayList;
-    BasketAdapter basketAdapter;
-
+    ListView lvOrder;
+    ArrayList<Basket> orderArrayList;
+    BasketAdapter orderAdapter;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_basket, container, false);
 
-        lvBasket = (ListView) view.findViewById(R.id.lvProductList);
+        lvOrder = (ListView) view.findViewById(R.id.lvBasket);
 
         addControls();
         addEvent();
+        selectItem();
+
         return view;
     }
-
     private void addControls() {
 
-        basketArrayList = new ArrayList<>();
+        orderArrayList = new ArrayList<>();
         /**
          * @param MainActivity.this
          * @param R.layout.item
          * @param bookList
          * */
-        basketAdapter = new BasketAdapter(getActivity(),R.layout.item_custom, basketArrayList);
-        lvBasket.setAdapter(basketAdapter);
+        orderAdapter = new BasketAdapter(getActivity(),R.layout.item_custom_basket, orderArrayList);
+        lvOrder.setAdapter(orderAdapter);
     }
 
     private void addEvent() {
@@ -79,10 +86,9 @@ public class BasketFragment extends Fragment {
             public void onResponse(Call<List<Basket>> call, Response<List<Basket>> response) {
                 List<Basket> productsList = response.body();
                 for (int i = 0; i<productsList.size() ; i++) {
-                    basketArrayList.add(productsList.get(i));
-
+                    orderArrayList.add(productsList.get(i));
                 }
-                basketAdapter.notifyDataSetChanged();
+                orderAdapter.notifyDataSetChanged();
                 Log.d(TAG, "onResponse" + "oke");
             }
 
@@ -92,9 +98,24 @@ public class BasketFragment extends Fragment {
             }
         });
 
-        basketAdapter.notifyDataSetChanged();
+        orderAdapter.notifyDataSetChanged();
 
 
     }
 
+    private void selectItem()
+    {
+        lvOrder.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Basket basket = orderArrayList.get(position);
+                Product product = new Product(String.valueOf(basket.getProductId()),basket.getNameProduct(),String.valueOf(basket.getPriceProduct()),basket.getInformationProduct(),basket.getImageProduct());
+
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), DetailBasket.class);
+                intent.putExtra(SEND_DATA,product);
+                startActivity(intent);
+            }
+        });
+    }
 }

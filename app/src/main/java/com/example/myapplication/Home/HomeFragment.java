@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.myapplication.Detail.DetailActivity;
+import com.example.myapplication.Detail.DetailProduct;
 import com.example.myapplication.GetProduct.APIService;
 import com.example.myapplication.Product.Product;
 import com.example.myapplication.Product.ProductAdapter;
@@ -101,12 +101,9 @@ public class HomeFragment extends Fragment {
                 Product product = productList.get(position);
 
                 Intent intent = new Intent();
-                intent.setClass(getActivity(), DetailActivity.class);
+                intent.setClass(getActivity(), DetailProduct.class);
                 intent.putExtra(SEND_DATA,product);
                 startActivity(intent);
-//                Toast.makeText(getActivity(),String.valueOf(product.getId()),Toast.LENGTH_SHORT).show();
-
-//                productAdapter.notifyDataSetChanged();
             }
         });
     }

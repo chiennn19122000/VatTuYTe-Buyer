@@ -15,7 +15,7 @@ import java.util.List;
 
 import static com.example.myapplication.Constants.BaseUrlUpload;
 
-public class BasketAdapter extends ArrayAdapter<Basket> {
+public class OrderAdapter extends ArrayAdapter<Basket> {
 
     Activity context;
     int resource;
@@ -25,7 +25,7 @@ public class BasketAdapter extends ArrayAdapter<Basket> {
      * @param resource
      * @param objects
      * */
-    public BasketAdapter(Activity context, int resource, List<Basket> objects) {
+    public OrderAdapter(Activity context, int resource, List<Basket> objects) {
         super(context, resource, objects);
         this.context=context;
         this.resource=resource;
@@ -37,13 +37,18 @@ public class BasketAdapter extends ArrayAdapter<Basket> {
         LayoutInflater inflater= this.context.getLayoutInflater();
         View customView = inflater.inflate(this.resource,null);
 
-        TextView name = (TextView) customView.findViewById(R.id.namebasket);
-        TextView price = (TextView) customView.findViewById(R.id.pricebasket);
-        ImageView img = (ImageView) customView.findViewById(R.id.imagebasket);
+        TextView ma = (TextView) customView.findViewById(R.id.ma_oder);
+        TextView name = (TextView) customView.findViewById(R.id.name);
+        TextView price = (TextView) customView.findViewById(R.id.price);
+        ImageView img = (ImageView) customView.findViewById(R.id.image);
+        TextView sum = (TextView) customView.findViewById(R.id.sum_money);
         /** Set data to custumView*/
         final Basket basket = this.objects.get(position);
+        ma.setText("Mã đơn hàng: " + basket.getOrderId());
         name.setText(basket.getNameProduct());
-        price.setText(basket.getPriceProduct()+" VNĐ ");
+        price.setText(basket.getPriceProduct()+" VNĐ x" + basket.getQuantity()  );
+//        img.setImageResource(Integer.valueOf(basket.getImageProduct()));
+        sum.setText("Tổng số tiền: "+ basket.getPay() +" VNĐ");
         Picasso.with(getContext()).load(BaseUrlUpload+basket.getImageProduct()).into(img);
         /**Set Event Onclick*/
 
@@ -52,3 +57,4 @@ public class BasketAdapter extends ArrayAdapter<Basket> {
     /** Show mesage*/
 
 }
+

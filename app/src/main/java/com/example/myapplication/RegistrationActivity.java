@@ -126,7 +126,7 @@ public class RegistrationActivity extends BaseActivity {
                 Log.d("Server Response",""+register.getResponse());
                 if(register.getResponse().equals("Successfully"))
                 {
-                    Toast.makeText(RegistrationActivity.this,"Đăng kí thàng công",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegistrationActivity.this,"Đăng kí thàng công",Toast.LENGTH_LONG).show();
                     startActivity(new Intent(RegistrationActivity.this,MainActivity.class));
 
                 }

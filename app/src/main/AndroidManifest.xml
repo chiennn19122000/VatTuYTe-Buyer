@@ -22,7 +22,11 @@
         </activity>
         <activity android:name=".SystemActivity"/>
         <activity android:name=".RegistrationActivity"/>
-        <activity android:name=".Detail.DetailActivity"/>
+        <activity android:name=".Detail.DetailProduct"/>
+        <activity android:name=".Detail.DetailOrder"/>
+        <activity android:name=".Detail.DetailBasket"/>
+        <activity android:name=".ChangePassActivity"/>
+        <activity android:name=".ChangeInfoActivity"/>
 
     </application>
 

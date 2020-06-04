@@ -2,7 +2,9 @@ package com.example.myapplication.Basket;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Basket {
+import java.io.Serializable;
+
+public class Basket implements Serializable {
     @SerializedName("OrderId")
     private int OrderId;
 
@@ -17,6 +19,9 @@ public class Basket {
 
     @SerializedName("Pay")
     private int Pay;
+
+    @SerializedName("Place")
+    private String Place;
 
     @SerializedName("Id")
     private int IdGen;
@@ -33,13 +38,13 @@ public class Basket {
     @SerializedName("ImageProduct")
     private String ImageProduct;
 
-
-    public Basket(int orderId, int productId, String username, int quantity, int pay, int idGen, String nameProduct, int priceProduct, String informationProduct, String imageProduct) {
+    public Basket(int orderId, int productId, String username, int quantity, int pay, String place, int idGen, String nameProduct, int priceProduct, String informationProduct, String imageProduct) {
         OrderId = orderId;
         ProductId = productId;
         Username = username;
         Quantity = quantity;
         Pay = pay;
+        Place = place;
         IdGen = idGen;
         NameProduct = nameProduct;
         PriceProduct = priceProduct;
@@ -87,12 +92,20 @@ public class Basket {
         Pay = pay;
     }
 
-    public int getId() {
+    public String getPlace() {
+        return Place;
+    }
+
+    public void setPlace(String place) {
+        Place = place;
+    }
+
+    public int getIdGen() {
         return IdGen;
     }
 
-    public void setId(int IdGen) {
-        this.IdGen = IdGen;
+    public void setIdGen(int idGen) {
+        IdGen = idGen;
     }
 
     public String getNameProduct() {
@@ -100,7 +113,7 @@ public class Basket {
     }
 
     public void setNameProduct(String nameProduct) {
-        this.NameProduct = nameProduct;
+        NameProduct = nameProduct;
     }
 
     public int getPriceProduct() {
@@ -108,7 +121,7 @@ public class Basket {
     }
 
     public void setPriceProduct(int priceProduct) {
-        this.PriceProduct = priceProduct;
+        PriceProduct = priceProduct;
     }
 
     public String getInformationProduct() {
@@ -124,8 +137,10 @@ public class Basket {
     }
 
     public void setImageProduct(String imageProduct) {
-        this.ImageProduct = imageProduct;
+        ImageProduct = imageProduct;
     }
+
+
 
     @Override
     public String toString() {

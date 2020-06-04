@@ -1,5 +1,6 @@
 package com.example.myapplication.Detail;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
@@ -11,11 +12,13 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
+
+import androidx.appcompat.app.AlertDialog;
 
 import com.example.myapplication.BaseActivity;
+import com.example.myapplication.Basket.DeleteBasket;
 import com.example.myapplication.GetProduct.APIService;
-import com.example.myapplication.Place.PlaceSeller;
+import com.example.myapplication.Info.InfoSeller;
 import com.example.myapplication.Product.Product;
 import com.example.myapplication.R;
 import com.example.myapplication.SendDataToServer.ApiClient;
@@ -40,29 +43,31 @@ import static com.example.myapplication.Constants.BaseUrlGet;
 import static com.example.myapplication.Constants.BaseUrlUpload;
 import static com.example.myapplication.Constants.SEND_DATA;
 
-public class DetailActivity extends BaseActivity {
+public class DetailBasket extends BaseActivity {
 
-    @BindView(R.id.show_product)
+    @BindView(R.id.show_product_basket)
     ImageView image;
-    @BindView(R.id.name)
+    @BindView(R.id.name_basket)
     TextView name;
-    @BindView(R.id.price)
+    @BindView(R.id.price_basket)
     TextView price;
-    @BindView(R.id.info)
+    @BindView(R.id.info_basket)
     TextView info;
-    @BindView(R.id.amount)
+    @BindView(R.id.amount_basket)
     TextView amount;
-    @BindView(R.id.minus)
+    @BindView(R.id.minus_basket)
     Button minus;
-    @BindView(R.id.plus)
+    @BindView(R.id.plus_basket)
     Button plus;
-    @BindView(R.id.money)
+    @BindView(R.id.money_basket)
     TextView money;
-    @BindView(R.id.spinner_place_seller)
+    @BindView(R.id.spinner_place_seller_basket)
     Spinner spinner;
 
-    @BindView(R.id.save_order)
-    Button saveorder;
+    @BindView(R.id.delete_basket)
+    Button deletebasket;
+    @BindView(R.id.save_basket)
+    Button savebasket;
 
 
     Integer id1,soluong = 1,giatien;
@@ -70,14 +75,15 @@ public class DetailActivity extends BaseActivity {
     String place = "";
     @Override
     protected int getLayoutRes() {
-        return R.layout.order_product;
+        return R.layout.activity_detail_basket;
     }
 
     @Override
     protected void setupListener() {
         Minus();
         Plus();
-        Order();
+        DeleteBasket();
+        AddInOrder();
     }
 
     @Override
@@ -91,7 +97,7 @@ public class DetailActivity extends BaseActivity {
     private void SetData() {
         Intent intent = getIntent();
         Product product = (Product) intent.getSerializableExtra(SEND_DATA);
-        Picasso.with(DetailActivity.this).load(BaseUrlUpload+product.getImage()).into(image);
+        Picasso.with(DetailBasket.this).load(BaseUrlUpload+product.getImage()).into(image);
 
         name.setText(product.getName());
         price.setText(product.getPrice() + " VNĐ");
@@ -108,11 +114,11 @@ public class DetailActivity extends BaseActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         APIService apiService = retrofit.create(APIService.class);
-        Call<List<PlaceSeller>> call = apiService.getAllPlace();
-        call.enqueue(new Callback<List<PlaceSeller>>() {
+        Call<List<InfoSeller>> call = apiService.getInfoSeller();
+        call.enqueue(new Callback<List<InfoSeller>>() {
             @Override
-            public void onResponse(Call<List<PlaceSeller>> call, Response<List<PlaceSeller>> response) {
-                List<PlaceSeller> placeSellerList = response.body();
+            public void onResponse(Call<List<InfoSeller>> call, Response<List<InfoSeller>> response) {
+                List<InfoSeller> placeSellerList = response.body();
 
                 for (int i = 0; i<placeSellerList.size() ; i++) {
                     list.add(placeSellerList.get(i).getPlace());
@@ -123,7 +129,7 @@ public class DetailActivity extends BaseActivity {
             }
 
             @Override
-            public void onFailure(Call<List<PlaceSeller>> call, Throwable t) {
+            public void onFailure(Call<List<InfoSeller>> call, Throwable t) {
                 Log.e(TAG, "onFailure: " + t.getMessage());
             }
         });
@@ -177,14 +183,14 @@ public class DetailActivity extends BaseActivity {
         });
     }
 
-    private void Order()
+    private void AddInOrder()
     {
-        saveorder.setOnClickListener(new View.OnClickListener() {
+        savebasket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (place.equals("Vị Trí")||place.equals(""))
                 {
-                    Toast.makeText(DetailActivity.this,"Hãy chọn vị trí mua hàng",Toast.LENGTH_LONG).show();
+                    Toast.makeText(DetailBasket.this,"Hãy chọn vị trí mua hàng",Toast.LENGTH_LONG).show();
                 }
                 else {
                     sendDataOrder();
@@ -213,8 +219,9 @@ public class DetailActivity extends BaseActivity {
 
                 Order order = response.body();
                 Log.d("Server Response",""+order.getResponse() + idproduct + username + quantity + pay);
-                Toast.makeText(DetailActivity.this,"Đã đặt mua sản phẩm",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(DetailActivity.this, SystemActivity.class));
+                Toast.makeText(DetailBasket.this,"Đã đặt mua sản phẩm",Toast.LENGTH_LONG).show();
+                sendDataBasket();
+                startActivity(new Intent(DetailBasket.this, SystemActivity.class));
 
             }
 
@@ -225,5 +232,61 @@ public class DetailActivity extends BaseActivity {
         });
     }
 
+    private void DeleteBasket()
+    {
+        deletebasket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(DetailBasket.this);
+                builder.setTitle("Xóa đơn hàng");
+                builder.setIcon(R.mipmap.ic_launcher);
+                builder.setMessage("Bạn có chắc chắn muốn xóa đơn hàng ra khỏi giỏ?");
+                builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        sendDataBasket();
+                        Toast.makeText(DetailBasket.this,"Đã xóa khỏi giỏ hàng",Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+                });
+                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.setCanceledOnTouchOutside(false);
+                dialog.show();
+            }
+        });
 
+    }
+
+    private void sendDataBasket() {
+        int idproduct = id1;
+
+        SharedPreferences preferences = getSharedPreferences("data_login",MODE_PRIVATE);
+        String username = preferences.getString("username", "");
+
+
+        ApiInterface apiInterface = ApiClient.getApiClient(BaseUrlBuyer).create(ApiInterface.class);
+        Call<DeleteBasket> call = apiInterface.deleteBasket( idproduct,username);
+
+        call.enqueue(new Callback<DeleteBasket>() {
+            @Override
+            public void onResponse(Call<DeleteBasket> call, Response<DeleteBasket> response) {
+
+                DeleteBasket order = response.body();
+                Log.d("Server Response",""+order.getResponse() );
+
+
+            }
+
+            @Override
+            public void onFailure(Call<DeleteBasket> call, Throwable t) {
+                Log.d("Server Response",""+t.toString());
+            }
+        });
+    }
 }

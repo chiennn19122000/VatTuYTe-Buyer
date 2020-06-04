@@ -9,9 +9,9 @@ import androidx.appcompat.app.ActionBar;
 import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 
-import com.example.myapplication.Home.BasketFragment;
-import com.example.myapplication.Home.HomeFragment;
 import com.example.myapplication.Home.OrderProductFragment;
+import com.example.myapplication.Home.HomeFragment;
+import com.example.myapplication.Home.BasketFragment;
 import com.example.myapplication.Home.PersonalFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -55,12 +55,12 @@ public class SystemActivity extends BaseActivity {
                             selectedFragment = new HomeFragment();
                             break;
                         case R.id.post_add:
-                            setTitle("Giỏ Hàng");
-                            selectedFragment = new BasketFragment();
+                            setTitle("Đơn hàng đang đặt");
+                            selectedFragment = new OrderProductFragment();
                             break;
                         case R.id.order:
-                            setTitle("Đơn đặt hàng");
-                            selectedFragment = new OrderProductFragment();
+                            setTitle("Giỏ hàng");
+                            selectedFragment = new BasketFragment();
                             break;
                         case R.id.personal:
                             setTitle("Thông tin cá nhân");

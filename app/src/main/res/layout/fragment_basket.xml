@@ -7,6 +7,6 @@
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/lvProductList"
+        android:id="@+id/lvBasket"
         android:layout_weight="1" />
 </LinearLayout>

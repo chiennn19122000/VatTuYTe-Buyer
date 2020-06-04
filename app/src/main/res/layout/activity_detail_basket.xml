@@ -9,18 +9,10 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <TextView
-                android:id="@+id/text"
-                android:text="Thông tin sản phẩm"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentTop="true"
-                android:textColor="#4CAF50"
-                android:textSize="30sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+
 
             <ImageView
-                android:id="@+id/show_product"
+                android:id="@+id/show_product_basket"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/text"
                 android:src="@drawable/home"
@@ -29,8 +21,8 @@
                 android:layout_height="70pt"/>
 
             <TextView
-                android:id="@+id/name"
-                android:layout_below="@id/show_product"
+                android:id="@+id/name_basket"
+                android:layout_below="@id/show_product_basket"
                 android:textSize="20sp"
                 android:textColor="#000"
                 android:layout_centerHorizontal="true"
@@ -39,8 +31,8 @@
                 android:layout_height="wrap_content"/>
 
             <TextView
-                android:id="@+id/price"
-                android:layout_below="@id/name"
+                android:id="@+id/price_basket"
+                android:layout_below="@id/name_basket"
                 android:layout_centerHorizontal="true"
                 android:textSize="20sp"
                 android:textColor="#000"
@@ -49,8 +41,8 @@
                 android:layout_height="wrap_content"/>
 
             <TextView
-                android:id="@+id/info"
-                android:layout_below="@id/price"
+                android:id="@+id/info_basket"
+                android:layout_below="@id/price_basket"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="17dp"
                 android:textSize="20sp"
@@ -58,47 +50,47 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:id="@+id/amount"
+                android:id="@+id/amount_basket"
                 android:textSize="20sp"
                 android:textColor="#000"
                 android:text="1"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@id/info"
+                android:layout_below="@id/info_basket"
                 android:layout_marginTop="25dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <Button
-                android:id="@+id/minus"
+                android:id="@+id/minus_basket"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/info"
+                android:layout_below="@id/info_basket"
                 android:text="-"
                 android:background="#FFFFFF"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="30dp"
-                android:layout_toStartOf="@+id/amount"
+                android:layout_toStartOf="@+id/amount_basket"
                 android:textColor="#000"
                 android:textSize="20sp" />
             <Button
-                android:id="@+id/plus"
+                android:id="@+id/plus_basket"
                 android:textSize="20sp"
                 android:text="+"
                 android:textColor="#000"
-                android:layout_below="@id/info"
+                android:layout_below="@id/info_basket"
                 android:background="#FFFFFF"
-                android:layout_toEndOf="@id/amount"
+                android:layout_toEndOf="@id/amount_basket"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:id="@+id/money"
+                android:id="@+id/money_basket"
                 android:text="Thành tiền :"
                 android:textSize="20sp"
                 android:textColor="#FF5722"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@id/amount"
+                android:layout_below="@id/amount_basket"
                 android:layout_marginTop="17dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -106,28 +98,36 @@
                 android:id="@+id/ts1"
                 android:text="chọn vị trí mua hàng: "
                 android:textColor="#000"
-                android:layout_below="@id/money"
+                android:layout_below="@id/money_basket"
                 android:layout_marginTop="17dp"
                 android:layout_centerHorizontal="true"
                 android:textSize="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <Spinner
-                android:id="@+id/spinner_place_seller"
+                android:id="@+id/spinner_place_seller_basket"
                 android:layout_below="@id/ts1"
                 android:layout_marginTop="20dp"
                 android:layout_centerHorizontal="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+
             <Button
-                android:id="@+id/save_order"
+                android:id="@+id/save_basket"
                 android:text="Đặt hàng"
-                android:layout_below="@id/spinner_place_seller"
-                android:textColor="#4CAF50"
+                android:layout_below="@id/spinner_place_seller_basket"
+                android:textColor="#FFEB3B"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/delete_basket"
+                android:text="Xóa khỏi giỏ hàng"
+                android:layout_below="@id/save_basket"
+                android:textColor="#E91E63"
                 android:layout_marginTop="20dp"
                 android:layout_centerHorizontal="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="30dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </RelativeLayout>
