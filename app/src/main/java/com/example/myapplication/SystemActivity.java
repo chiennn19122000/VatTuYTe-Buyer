@@ -73,28 +73,7 @@ public class SystemActivity extends BaseActivity {
                 }
 
             };
-    //phương thức tìm kiếm
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_toolbar,menu);
-        MenuItem search = menu.findItem(R.id.search);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(search);
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-
-//                TODO: bắt các giá trị khi ta tìm kiếm
-                return false;
-            }
-        });
-        return super.onCreateOptionsMenu(menu);
-    }
 
     private void setTitle(String s)
     {

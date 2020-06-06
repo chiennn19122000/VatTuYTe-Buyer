@@ -48,7 +48,7 @@ public class OrderAdapter extends ArrayAdapter<Basket> {
         name.setText(basket.getNameProduct());
         price.setText(basket.getPriceProduct()+" VNĐ x" + basket.getQuantity()  );
 //        img.setImageResource(Integer.valueOf(basket.getImageProduct()));
-        sum.setText("Tổng số tiền: "+ basket.getPay() +" VNĐ");
+        sum.setText("Tổng số tiền: "+ basket.getPriceProduct() * basket.getQuantity() +" VNĐ");
         Picasso.with(getContext()).load(BaseUrlUpload+basket.getImageProduct()).into(img);
         /**Set Event Onclick*/
 

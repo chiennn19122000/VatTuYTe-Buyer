@@ -84,9 +84,8 @@ public class DetailProduct extends BaseActivity {
 
     @Override
     protected void populateData() {
-
-
-        HideTitle();
+        callback();
+        setTitle("Thông tin sản phẩm");
         SetData();
     }
 

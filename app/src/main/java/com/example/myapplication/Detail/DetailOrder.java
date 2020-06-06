@@ -82,7 +82,8 @@ public class DetailOrder extends BaseActivity {
 
     @Override
     protected void populateData() {
-        HideTitle();
+        callback();
+        setTitle("Thông tin đơn hàng");
         SetData();
     }
 

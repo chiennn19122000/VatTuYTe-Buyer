@@ -40,7 +40,7 @@ public class ChangePassActivity extends BaseActivity {
 
     @Override
     protected void populateData() {
-//        callback();
+        callback();
         setTitle("Thay đổi mật khẩu");
     }
     private void SavePass()

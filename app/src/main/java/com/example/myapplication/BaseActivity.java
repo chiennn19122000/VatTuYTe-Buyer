@@ -1,8 +1,10 @@
 package com.example.myapplication;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,6 +35,23 @@ public abstract class BaseActivity extends AppCompatActivity {
         // ẩn Title
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
+    }
+    protected void callback()
+    {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                finish();
+                return true;
+
+            default:break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
 

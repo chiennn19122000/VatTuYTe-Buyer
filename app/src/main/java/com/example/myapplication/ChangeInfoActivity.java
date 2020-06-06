@@ -45,7 +45,7 @@ public class ChangeInfoActivity extends BaseActivity {
 
     @Override
     protected void populateData() {
-//        callback();
+        callback();
         setTitle("Thay đổi thông tin");
     }
 

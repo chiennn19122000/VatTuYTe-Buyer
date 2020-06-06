@@ -6,14 +6,15 @@
     android:icon="@drawable/home"></item>
 <item
     android:id="@+id/post_add"
-    android:title="Giỏ hàng"
-    android:icon="@drawable/basket"></item>
-<item
-    android:id="@+id/order"
     android:icon="@drawable/orderproduct"
     android:title="Đơn hàng"></item>
+<item
+    android:id="@+id/order"
+    android:icon="@drawable/basket"
+    android:title="Giỏ hàng"></item>
 <item
     android:id="@+id/personal"
     android:icon="@drawable/personal"
     android:title="Cá nhân"></item>
 </menu>
+
